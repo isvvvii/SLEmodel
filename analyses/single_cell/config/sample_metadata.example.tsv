@@ -1,0 +1,3 @@
+sample_id	matrix_dir	apo_group	activity_group	trimester_or_stage	gestational_week	apo_severity	pregnancy_loss	preeclampsia_or_eclampsia
+sample_001	sample_001.matrix	APO	Active	early	NA	NA	FALSE	FALSE
+sample_002	sample_002.matrix	non-APO	Stable	mid	NA	NA	FALSE	FALSE

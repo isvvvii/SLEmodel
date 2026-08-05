@@ -1,0 +1,43 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.idea/
+.vscode/
+
+# Patient-level or assay-level inputs
+data/*
+!data/README.md
+!data/features/
+!data/features/rna_features_1124.csv
+*.h5ad
+analyses/single_cell/config/sample_metadata.tsv
+
+# External reference databases
+ref/
+
+# Training products and intermediate arrays
+experiments/
+ablation_logs/
+temp_configs/
+clinical_explain_results/
+interpretability_results/
+interpretability_aggregate/
+sensitivity_analysis_results/
+analysis_results*/
+ml_results_*/
+ablation_analysis_results*/
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+
+# Generated figures and reports
+/figures/
+/final_figures/
+/outputs/
+/reports/
+/results/
+*.log

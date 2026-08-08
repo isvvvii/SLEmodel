@@ -13,7 +13,7 @@ Training products are written beneath `experiments/`. Aggregate summaries are wr
 
 ## 2. Alignment diagnostics
 
-Generate per-fold diagnostics, aggregate them:
+Generate and aggregate per-fold diagnostics:
 
 ```bash
 python -m analyses.alignment.interpretability
@@ -65,20 +65,19 @@ python -m analyses.interpretation.plot_multimodal_interpretation \
   --msigdb_gobp ref/msigdb/c5.go.bp.v2025.1.Hs.symbols.gmt
 ```
 
-Required resources are not committed when redistribution is restricted:
+The following resources must be obtained separately because their redistribution is restricted:
 
 - MSigDB v2025.1 Hallmark, Reactome, and GO Biological Process GMT files
 - GRCh38 Ensembl-to-HGNC mapping used for RNA feature annotation
 - KEGG pathway mappings obtained through the KEGG REST service
 - the study-specific serum metabolite database used for exact-mass annotation
 
-The scripts record statistical and display audit tables alongside each generated panel.
+The scripts save the statistical source tables used to generate each panel.
 
 ## 6. Pregnancy-associated SLE single-cell analysis
 
-The PBMC single-cell workflow is kept separate from SLEmodel training. A
-reference raw-count QC/PCA implementation is available for approved 10x-format
-matrices:
+The PBMC single-cell analysis is independent of SLEmodel training. 
+The released count-matrix QC and PCA workflow is run with:
 
 ```bash
 python analyses/single_cell/scripts/preprocess_raw_counts_reference.py \
@@ -87,9 +86,8 @@ python analyses/single_cell/scripts/preprocess_raw_counts_reference.py \
   --output-dir outputs/single_cell/preprocessing
 ```
 
-Reproduction of the reported APO versus non-APO
-statistics starts from controlled, processed AnnData objects and performs
-sample-level module testing, raw-count pseudobulk differential expression,
+The APO versus non-APO analysis uses processed AnnData objects as input 
+and includes sample-level module testing, raw-count pseudobulk differential expression, 
 pathway analysis and CellPhoneDB analysis:
 
 ```bash
@@ -99,6 +97,5 @@ python analyses/single_cell/scripts/run_apo_analysis.py
 python analyses/single_cell/scripts/refine_bcell_modules.py
 ```
 
-Input layout, environment variables, visualization scripts and the limits of
-the reference preprocessing code are documented in
+Input layout, environment variables, preprocessing and visualization instructions are documented in
 [`analyses/single_cell/README.md`](../analyses/single_cell/README.md).

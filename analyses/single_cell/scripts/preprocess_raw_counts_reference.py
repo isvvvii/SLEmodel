@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Reference implementation of the single-cell QC and PCA workflow.
 
-The original script that generated ``adata_pca.h5ad`` was not retained.
-This implementation follows the parameters recorded in the QC summary,
-workflow notes, and processed AnnData object. It is provided so that
-approved 10x-format count matrices can be processed to the same analysis
-boundary without embedding participant identifiers or private paths.
+This workflow applies per-sample Scrublet filtering, recorded quality-control
+thresholds, normalization, highly variable gene selection and PCA to approved
+10x-format count matrices. Outputs provide the preprocessing boundary required
+by the downstream single-cell workflow without embedding participant identifiers
+or private paths.
 """
 
 from __future__ import annotations
@@ -62,10 +62,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--expected-doublet-rate",
         type=float,
         default=0.05,
-        help=(
-            "Scrublet expected doublet rate. The original setting was not retained; "
-            "0.05 is the Scanpy 1.11.5 default."
-        ),
+        help="Scrublet expected doublet rate (default: 0.05).",
     )
     parser.add_argument("--target-sum", type=float, default=1e4)
     parser.add_argument("--n-hvg", type=int, default=3000)
